@@ -159,7 +159,6 @@ const TESTIMONIALS = [
 
 // --- Components ---
 
-// Brand Logo Component matching the uploaded image
 const BrandLogo = ({ className = "w-8 h-8" }: { className?: string }) => (
   <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M20 85V55H35V85H20Z" className="fill-slate-800 dark:fill-white" />
@@ -241,7 +240,6 @@ const Home = ({ setPage }: PageProps) => (
           </Button>
         </div>
 
-        {/* Hero Visual Animation */}
         <div className="mt-16 relative w-full max-w-3xl mx-auto h-[300px] md:h-[400px]">
           <motion.div 
             initial={{ y: 100, opacity: 0 }}
@@ -711,99 +709,381 @@ const Services = ({ setPage }: PageProps) => {
   );
 };
 
-const Portfolio = ({ setPage }: PageProps) => {
-  const [filter, setFilter] = useState('All');
-  const filters = ['All', 'Food', 'Fitness', 'Real Estate', 'Service'];
+const About = ({ setPage }: PageProps) => (
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pt-24 pb-12">
+    
+    {/* 1. Origin & Mission */}
+    <Section>
+      <div className="max-w-5xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white">About Build50</h1>
+          <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
+             Build50 was created with a simple idea: help Australian small businesses get a modern website without paying agency prices.
+          </p>
+        </div>
 
-  const wipItems = [1, 2, 3, 4, 5, 6];
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
+           {/* Origin */}
+           <div>
+             <h3 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4">
+               The Origin
+             </h3>
+             <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
+               As a founder who grew up around hardworking tradespeople, retail owners, and local services, I saw one thing in common.
+             </p>
+             <blockquote className="border-l-4 border-purple-600 pl-6 py-2">
+               <p className="text-xl font-medium text-slate-800 dark:text-slate-200 italic leading-relaxed">
+                 "Everyone wants more customers, but no one has the time or budget for a $5,000+ agency website."
+               </p>
+             </blockquote>
+           </div>
+
+           {/* Mission */}
+           <div>
+             <h3 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4">
+               Our Mission
+             </h3>
+             <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+               To give every Australian business a fast, beautiful, affordable online presence — 
+               without the stress, confusing tech jargon, or massive upfront cost.
+             </p>
+             <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+               We bridge the gap between expensive agencies and low-quality DIY builders by providing fixed-price, subscription websites that grow with you.
+             </p>
+           </div>
+        </div>
+      </div>
+    </Section>
+
+    {/* 2. How We Help & 3. What We Do */}
+    <Section className="bg-slate-50 dark:bg-slate-900/50 rounded-3xl">
+       <div className="grid lg:grid-cols-2 gap-16">
+         <div>
+            <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+              <Heart className="w-8 h-8 text-purple-500" /> How We Help
+            </h2>
+            <ul className="space-y-6">
+              {[
+                "Responsive websites that look premium and convert clients",
+                "SEO foundations to rank on Google and bring in customers",
+                "Social media systems that keep their brand active",
+                "Automation that saves hours of time each week",
+                "Monthly support so your site never becomes “outdated” again"
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-4 p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm">
+                  <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 text-green-600 rounded-full flex items-center justify-center shrink-0">
+                    <Check className="w-5 h-5" />
+                  </div>
+                  <span className="text-slate-700 dark:text-slate-200 font-medium pt-1">{item}</span>
+                </li>
+              ))}
+            </ul>
+         </div>
+         <div>
+            <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+              <Briefcase className="w-8 h-8 text-purple-500" /> What We Do
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                { icon: Monitor, title: "Web Design", desc: "Clean, modern, mobile-first websites built to convert." },
+                { icon: Search, title: "SEO & Growth", desc: "Basic to advanced SEO strategies that help you get found." },
+                { icon: Layout, title: "Social & Brand", desc: "Content, branding kits, templates, and assets." },
+                { icon: Zap, title: "Automation", desc: "CRM setup, lead tracking, automated follow-ups." },
+                { icon: Server, title: "Management", desc: "Changes, updates, maintenance, monitoring, security." },
+                { icon: Clock, title: "Fast Turnaround", desc: "Most builds delivered within 7–14 days." }
+              ].map((service, i) => (
+                 <div key={i} className="flex flex-col gap-3 p-5 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-purple-200 dark:hover:border-purple-800 transition-colors">
+                    <div className="text-purple-600"><service.icon className="w-6 h-6" /></div>
+                    <div>
+                      <h4 className="font-bold mb-1">{service.title}</h4>
+                      <p className="text-sm text-slate-500 leading-snug">{service.desc}</p>
+                    </div>
+                 </div>
+              ))}
+            </div>
+         </div>
+       </div>
+    </Section>
+
+    {/* 4. Why Australians Choose Us */}
+    <Section>
+      <div className="text-center mb-12">
+        <h2 className="text-3xl font-bold mb-4">Why Australians Choose Us 🇦🇺</h2>
+        <p className="text-slate-500">Built for the local market, with local values.</p>
+      </div>
+      <div className="grid md:grid-cols-3 gap-6">
+        {[
+          { icon: MessageCircle, title: "Local Support", desc: "We operate on Aussie time, answer fast, and communicate clearly." },
+          { icon: DollarSignIcon, title: "Fixed Pricing", desc: "No hidden fees, no surprises — just predictable monthly plans." }, // Placeholder icon
+          { icon: Zap, title: "Fast Delivery", desc: "Most sites are delivered in 1–2 weeks, not months." },
+          { icon: Users, title: "Real Humans", desc: "No overseas call centres. You speak directly to the person doing the work." },
+          { icon: Heart, title: "Small Biz Friendly", desc: "We understand Aussie small business culture — trust, fairness, straight talk." },
+          { icon: Shield, title: "Secure & Reliable", desc: "Australian hosting partners, fast load times, and security monitoring." }
+        ].map((item, i) => (
+          <Card key={i} className="text-center hover:scale-105">
+             <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/50 rounded-full flex items-center justify-center text-purple-600 mx-auto mb-4">
+               <item.icon className="w-6 h-6" />
+             </div>
+             <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+             <p className="text-sm text-slate-500">{item.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </Section>
+
+    {/* 5. Industries */}
+    <Section className="bg-slate-900 text-white rounded-3xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 p-32 bg-purple-600/20 blur-3xl rounded-full pointer-events-none"></div>
+      <div className="relative z-10">
+        <h2 className="text-3xl font-bold mb-10 text-center">Industries We Support</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+           {[
+             { icon: Hammer, name: "Trades" },
+             { icon: Heart, name: "Health" },
+             { icon: ShoppingBag, name: "Retail" },
+             { icon: Utensils, name: "Hospitality" },
+             { icon: BookOpen, name: "Education" },
+             { icon: Briefcase, name: "Services" }
+           ].map((ind, i) => (
+             <div key={i} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl flex flex-col items-center justify-center gap-3 hover:bg-white/20 transition-colors cursor-default">
+               <ind.icon className="w-8 h-8 text-purple-300" />
+               <span className="font-medium text-sm">{ind.name}</span>
+             </div>
+           ))}
+        </div>
+      </div>
+    </Section>
+
+    {/* 6. Process */}
+    <Section>
+       <h2 className="text-3xl font-bold mb-12 text-center">Our Simple Process</h2>
+       <div className="max-w-4xl mx-auto space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+          {[
+            { step: "01", title: "Discovery Call", desc: "We learn what you need, your goals, and how your business works." },
+            { step: "02", title: "Custom Preview", desc: "We design a homepage preview so you can visualise everything before we build." },
+            { step: "03", title: "Dev & Setup", desc: "We build your pages, SEO, mobile responsiveness and connect all systems." },
+            { step: "04", title: "Revisions", desc: "You request changes. We refine until you’re ready to launch." },
+            { step: "05", title: "Launch", desc: "Your website goes live. We handle hosting, setup, security, and monitoring." },
+            { step: "06", title: "Monthly Support", desc: "You focus on your business. We handle updates, changes, SEO and content." }
+          ].map((item, i) => (
+            <div key={i} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+              {/* Icon/Dot */}
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-hover:bg-purple-500 group-hover:text-white text-slate-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 font-bold text-xs transition-colors">
+                {item.step}
+              </div>
+              {/* Content */}
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                 <h3 className="font-bold text-lg mb-1 text-slate-900 dark:text-white">{item.title}</h3>
+                 <p className="text-sm text-slate-500">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+       </div>
+    </Section>
+
+    {/* 7. Extra Elements (Stats & Tech) */}
+    <Section className="bg-slate-50 dark:bg-slate-900/50 rounded-3xl">
+      <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 className="text-2xl font-bold mb-6">Build50 by the Numbers</h2>
+          <div className="grid grid-cols-2 gap-6">
+            {[
+              { label: "Avg Build Time", val: "10 Days", icon: CalendarIcon },
+              { label: "Response Time", val: "< 2 Hrs", icon: Clock },
+              { label: "Client Renewal", val: "90%+", icon: TrendingUp },
+              { label: "Aussie Owned", val: "100%", icon: Star }
+            ].map((stat, i) => (
+              <div key={i} className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm">
+                <div className="text-purple-600 mb-2"><stat.icon className="w-5 h-5"/></div>
+                <div className="text-2xl font-bold mb-1">{stat.val}</div>
+                <div className="text-xs text-slate-500 uppercase tracking-wide">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+           <h2 className="text-2xl font-bold mb-6">Built on Modern Tech</h2>
+           <p className="text-slate-600 dark:text-slate-400 mb-6">We don't use slow, insecure builders. We use the same stack as major tech companies for speed and reliability.</p>
+           <div className="flex flex-wrap gap-3">
+             {['React', 'Next.js', 'Tailwind CSS', 'Vercel', 'TypeScript', 'Framer Motion', 'Shopify'].map(tech => (
+               <span key={tech} className="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-full text-sm font-medium text-slate-700 dark:text-slate-300">
+                 {tech}
+               </span>
+             ))}
+           </div>
+        </div>
+      </div>
+    </Section>
+
+    {/* CTA */}
+    <Section className="text-center py-20">
+       <h2 className="text-4xl font-bold mb-4">Ready to grow your business?</h2>
+       <p className="text-xl text-slate-500 mb-8 max-w-2xl mx-auto">Let’s build your website in the next 7 days. Book your free 20-minute strategy session.</p>
+       <div className="flex flex-col sm:flex-row justify-center gap-4">
+         <Button onClick={() => setPage('book')}>Book a Call</Button>
+         <Button variant="outline" onClick={() => window.open('https://wa.me/61400123456')}>Message on WhatsApp</Button>
+       </div>
+    </Section>
+
+  </motion.div>
+);
+
+const Contact = () => {
+  const [formState, setFormState] = useState({ name: '', email: '', package: 'Growth', message: '' });
+  const [status, setStatus] = useState('idle');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+    // Simulate API call
+    setTimeout(() => {
+      setStatus('success');
+      setFormState({ name: '', email: '', package: 'Growth', message: '' });
+    }, 1500);
+  };
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pt-24 pb-12">
-      <Section>
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
-            <Construction className="w-4 h-4" /> Under Development
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white">
-            Our Work — Currently Under Development!
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
-            We’re currently working with several Australian businesses, building their websites, optimizing SEO, and managing their social media.
-          </p>
-          <p className="mt-4 text-slate-500 dark:text-slate-400">
-            Our portfolio is growing fast, but due to high demand, we haven’t had the chance to showcase all of our projects yet.
-          </p>
-        </div>
-
-        {/* Work in Progress Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          <AnimatePresence>
-            {wipItems.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group relative h-72 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 shadow-sm hover:shadow-lg transition-all"
-              >
-                <div className="absolute inset-0 bg-slate-100 dark:bg-slate-800 animate-pulse"></div>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"></div>
-
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
-                  <div className="w-16 h-16 bg-white dark:bg-slate-800 rounded-full shadow-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Loader className="w-8 h-8 text-purple-600 animate-[spin_3s_linear_infinite]" />
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                    Client Project {item}
-                  </h3>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold uppercase tracking-wider rounded-full">
-                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                    Coming Soon
-                  </span>
+      <Section className="max-w-4xl">
+        <div className="grid md:grid-cols-2 gap-12">
+          <div>
+            <h1 className="text-4xl font-bold mb-6">Let's Talk</h1>
+            <p className="text-slate-600 dark:text-slate-300 mb-8">
+              Ready to grow your business? Fill out the form or use the quick links below.
+            </p>
+            
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+                  <MessageCircle className="w-5 h-5" />
                 </div>
-                <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent opacity-50"></div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-
-        {/* CTA Section */}
-        <div className="bg-slate-900 dark:bg-purple-900/20 text-white rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6">Secure Your Spot</h2>
-            <p className="text-lg text-slate-300 mb-8 leading-relaxed">
-              We’re currently fully booked, but we’d love to help your business next! Book a free consultation today to join our waiting list.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setPage('book')}
-                className="px-8 py-4 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-bold text-lg shadow-lg shadow-purple-500/30 transition-colors flex items-center justify-center gap-2"
-              >
-                Book Free Consult <ArrowRight className="w-5 h-5" />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => window.open('https://wa.me/61400123456')}
-                className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl font-bold text-lg backdrop-blur-sm transition-colors flex items-center justify-center gap-2"
-              >
-                <MessageCircle className="w-5 h-5" /> WhatsApp Us
-              </motion.button>
+                <div>
+                  <div className="font-bold">WhatsApp Us</div>
+                  <div className="text-sm text-slate-500">+61 400 123 456</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="font-bold">Email Us</div>
+                  <div className="text-sm text-slate-500">hello@build50.com</div>
+                </div>
+              </div>
             </div>
-            <p className="mt-6 text-sm text-slate-400">
-              Limited spots available for next month.
-            </p>
+
+            <div className="mt-12 p-6 bg-slate-50 dark:bg-slate-800 rounded-xl">
+               <h3 className="font-bold mb-2">Office Hours</h3>
+               <p className="text-sm text-slate-500">Mon-Fri: 9am - 5pm (AEST)</p>
+               <p className="text-sm text-slate-500">Melbourne, Australia</p>
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl shadow-lg">
+            {status === 'success' ? (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Check className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
+                <p className="text-slate-500 mb-6">We'll get back to you within 24 hours.</p>
+                <Button onClick={() => setStatus('idle')} variant="outline">Send Another</Button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-1">Name</label>
+                  <input 
+                    required 
+                    type="text" 
+                    className="w-full p-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-purple-500 outline-none"
+                    value={formState.name}
+                    onChange={e => setFormState({...formState, name: e.target.value})}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Email</label>
+                  <input 
+                    required 
+                    type="email" 
+                    className="w-full p-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-purple-500 outline-none"
+                    value={formState.email}
+                    onChange={e => setFormState({...formState, email: e.target.value})}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Interested Package</label>
+                  <select 
+                    className="w-full p-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-purple-500 outline-none"
+                    value={formState.package}
+                    onChange={e => setFormState({...formState, package: e.target.value})}
+                  >
+                    {PACKAGES.map(p => <option key={p.name} value={p.name}>{p.name} ({p.price})</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Message</label>
+                  <textarea 
+                    rows={4}
+                    className="w-full p-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-purple-500 outline-none"
+                    value={formState.message}
+                    onChange={e => setFormState({...formState, message: e.target.value})}
+                  />
+                </div>
+                <Button type="submit" className="w-full" disabled={status === 'sending'}>
+                  {status === 'sending' ? 'Sending...' : 'Send Message'}
+                </Button>
+              </form>
+            )}
           </div>
         </div>
       </Section>
     </motion.div>
   );
 };
+
+const Book = () => (
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pt-24 pb-12">
+    <Section className="text-center max-w-4xl">
+      <h1 className="text-3xl font-bold mb-6">Book a Free Consult</h1>
+      <div className="bg-white dark:bg-slate-800 h-[600px] rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center shadow-lg">
+        <div className="text-center p-8">
+           <p className="text-slate-500 mb-4">[Calendly Embed Widget Placeholder]</p>
+           <Button>Open Calendly Popup</Button>
+           <p className="text-xs text-slate-400 mt-4">Simulating 3rd party iframe load...</p>
+        </div>
+      </div>
+    </Section>
+  </motion.div>
+);
+
+const Privacy = () => (
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pt-24 pb-12">
+    <Section className="max-w-3xl prose dark:prose-invert">
+      <h1>Privacy Policy</h1>
+      <p><strong>Last updated:</strong> November 26, 2025</p>
+      
+      <h3>1. Introduction</h3>
+      <p>Build50 ("we", "us", "our") respects your privacy. This policy explains what personal data we collect, how we use it, and your rights.</p>
+      
+      <h3>2. Information we collect</h3>
+      <p>Contact information you provide (name, email, phone, business name) when using our contact or booking forms. Usage data collected via server logs and analytics.</p>
+      
+      <h3>3. How we use your data</h3>
+      <ul>
+        <li>To respond to enquiries and provide services.</li>
+        <li>To send transactional emails.</li>
+        <li>To improve and secure our site.</li>
+      </ul>
+
+      <h3>Contact</h3>
+      <p>hello@build50.com</p>
+    </Section>
+  </motion.div>
+);
+
+// --- Layout & Main App ---
 
 const CalendarIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
